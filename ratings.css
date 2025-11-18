@@ -1,0 +1,271 @@
+/**
+ * PromptRocket Ratings CSS
+ * Simple, clean, on-brand
+ */
+
+/* Brand Colors */
+:root {
+    --pr-cream: #F2EDE1;
+    --pr-red: #E63946;
+    --pr-orange: #F77F00;
+    --pr-yellow: #FCBF49;
+    --pr-teal: #2A9D8F;
+    --pr-gray: #6B7280;
+    --pr-gray-light: #9CA3AF;
+    --pr-gray-dark: #4B5563;
+}
+
+/* Rating Display (Top of Post) */
+.pr-rating-display {
+    padding: 20px;
+    background: var(--pr-cream);
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+
+.pr-rating-display h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: var(--pr-gray-dark);
+}
+
+.pr-rating-display.pr-no-ratings {
+    background: #f9f9f9;
+}
+
+.pr-no-ratings {
+    font-size: 16px;
+}
+
+.pr-rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pr-stars {
+    display: inline-flex;
+    gap: 3px;
+}
+
+.pr-stars .pr-star {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.pr-stars .pr-star.filled {
+    filter: grayscale(0%) brightness(1.2);
+}
+
+.pr-stars .pr-star.empty {
+    filter: grayscale(100%);
+    opacity: 0.3;
+}
+
+.pr-rating-text {
+    font-size: 16px;
+    color: var(--pr-gray-dark);
+    font-weight: 500;
+}
+
+.pr-be-first {
+    color: var(--pr-gray);
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* Rating Form (Bottom of Post) */
+.pr-rating-form {
+    padding: 30px;
+    background: linear-gradient(135deg, var(--pr-cream) 0%, #ffffff 100%);
+    border: 2px solid var(--pr-orange);
+    border-radius: 8px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.pr-rating-form.pr-already-rated {
+    background: var(--pr-cream);
+    border-color: var(--pr-teal);
+}
+
+.pr-rating-form.pr-already-rated p {
+    margin: 0;
+    color: var(--pr-teal);
+    font-weight: 600;
+}
+
+.pr-rating-cta {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--pr-gray-dark);
+    margin-bottom: 20px;
+}
+
+.pr-rating-stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.pr-rating-stars .pr-star {
+    font-size: 32px;
+    cursor: pointer;
+    filter: grayscale(100%);
+    opacity: 0.4;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.pr-rating-stars .pr-star:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.pr-rating-stars .pr-star.active {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Hover effect - fill all stars up to hovered one */
+.pr-rating-stars.hovering .pr-star {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+.pr-rating-stars.hovering .pr-star.hover-active {
+    filter: grayscale(0%) brightness(1.1);
+    opacity: 1;
+}
+
+/* Rating message feedback */
+.pr-rating-message {
+    min-height: 25px;
+    font-size: 14px;
+    color: var(--pr-teal);
+    font-weight: 500;
+}
+
+.pr-rating-message.error {
+    color: var(--pr-red);
+}
+
+/* Loading state */
+.pr-rating-form.loading .pr-rating-stars {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pr-rating-form.loading .pr-star {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Top Rated Posts Shortcode */
+.pr-top-rated {
+    padding: 20px;
+    background: var(--pr-cream);
+    border-radius: 8px;
+}
+
+.pr-top-rated ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.pr-top-rated li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.pr-top-rated a {
+    color: var(--pr-teal);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pr-top-rated a:hover {
+    color: var(--pr-orange);
+    text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .pr-rating-display {
+        padding: 15px;
+    }
+    
+    .pr-rating-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .pr-rating-form {
+        padding: 20px;
+    }
+    
+    .pr-rating-stars .pr-star {
+        font-size: 28px;
+    }
+    
+    .pr-rating-stars {
+        gap: 5px;
+    }
+}
+
+/* Tooltip for star hover text */
+.pr-star[title] {
+    position: relative;
+}
+
+.pr-star-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--pr-gray-dark);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-bottom: 5px;
+}
+
+.pr-star:hover .pr-star-tooltip {
+    opacity: 1;
+}
+
+/* Animation for successful rating */
+@keyframes success-pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pr-rating-form.success .pr-rating-stars .pr-star {
+    animation: success-pop 0.4s ease;
+}
